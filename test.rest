@@ -36,4 +36,4 @@ content-type:application/json
 }
 
 ### DELETE AN ITEM 
-DELETE {{url}}/germanNouns/7
+DELETE {{url}}/germanNouns/4

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 
 export const AppContext = createContext();
@@ -9,17 +9,21 @@ const initialState = {
 	count: 0,
 	germanNouns: [],
 };
+
 function reducer(state, action) {
-	const _state = { ...state };
-	switch (action) {
+	let obj = { ...state };
+	switch (action.type) {
 		case 'increaseCount':
-			_state.count++;
+			obj.count++;
 			break;
 		case 'decreaseCount':
-			_state.count--;
+			obj.count--;
+			break;
+		case 'loadGermanNouns':
+			obj.germanNouns = action.payload;
 			break;
 	}
-	return _state;
+	return obj;
 }
 
 useEffect(() => {

@@ -13,6 +13,17 @@ function App() {
 				<button onClick={() => dispatch('decreaseCount')}>-</button>
 				<button onClick={() => dispatch('increaseCount')}>+</button>
 			</div>
+			<h2>Items from API</h2>
+
+			<div className="germanNounArea">
+				{state.germanNouns.map((item, i) => {
+					return (
+						<div className="germanNoun" key={i}>
+							{item.singular}
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

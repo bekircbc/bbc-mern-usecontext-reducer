@@ -6,9 +6,7 @@ GET {{url}}/germanNouns
 ### ADD ITEM 
 
 POST {{url}}/germanNouns 
-
 content-type: application/json
-
   {
   "article": "aaa", 
   "singular": "sss", 
@@ -17,9 +15,7 @@ content-type: application/json
 
 ### REPLACE ALL FIELDS IN AN ITEM 
 PUT {{url}}/germanNouns/4 
-
 content-type: application/json 
-
 {
   "article": "die", 
   "singular": "Bibliothek", 
@@ -28,7 +24,6 @@ content-type: application/json
 
 ### REPLACE ONE FIELD IN AN ITEM 
 PATCH {{url}}/germanNouns/4 
-
 content-type:application/json
 
 {

@@ -1,5 +1,5 @@
-import { createContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
+import { createContext, useReducer } from 'react';
+// import axios from 'axios';
 
 export const AppContext = createContext();
 
@@ -25,14 +25,6 @@ function reducer(state, action) {
 	}
 	return obj;
 }
-
-useEffect(() => {
-	(async () => {
-		const _germanNouns = (await axios.get(`${api_base_url}/germanNouns`))
-			.data;
-		dispatch({ type: 'loadGermanNouns', payload: _germanNouns });
-	})();
-}, []);
 
 export const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);

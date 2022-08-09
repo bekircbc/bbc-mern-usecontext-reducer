@@ -9,18 +9,43 @@ function App() {
 		<div className="App">
 			<h1>Site with useContext/useReducer</h1>
 			<p>test: {state.count}</p>
-			<div className="buttonArea">
-				<button onClick={() => dispatch('decreaseCount')}>-</button>
-				<button onClick={() => dispatch('increaseCount')}>+</button>
+			<div className="countArea">
+				<button onClick={() => dispatch({ type: 'decreaseCount' })}>
+					-
+				</button>
+				<button onClick={() => dispatch({ type: 'increaseCount' })}>
+					+
+				</button>
 			</div>
-			<h2>Items from API</h2>
-
+			<hr />
+			<p>There are {state.germanNouns.length} nouns.</p>
 			<div className="germanNounArea">
-				{state.germanNouns.map((item, i) => {
+				{state.germanNouns.map((item) => {
 					return (
-						<div className="germanNoun" key={i}>
-							{item.singular}
-						</div>
+						<fieldset className="germanNoun" key={item.id}>
+							<legend>ID: {item.id}</legend>
+
+							<div className="row">
+								<label>Article</label>
+								<div className="value">{item.article}</div>
+							</div>
+
+							<div className="row">
+								<label>Singular</label>
+								<div className="value">{item.singular}</div>
+							</div>
+
+							<div className="row">
+								<label>Plural</label>
+								<div className="value">{item.plural}</div>
+							</div>
+
+							<div className="buttonRow">
+								<button>Edit</button>
+								<button>Delete</button>
+								<button>Add</button>
+							</div>
+						</fieldset>
 					);
 				})}
 			</div>

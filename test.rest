@@ -4,27 +4,21 @@
 GET {{url}}/germanNouns
 
 ### ADD ITEM 
+POST {{url}}/germanNouns content-type: application/json
 
-POST {{url}}/germanNouns 
-content-type: application/json
-  {
-  "article": "aaa", 
-  "singular": "sss", 
-  "plural": "ppp"
-  }
+{
+"article": "aaa", "singular": "sss", "plural": "ppp"
+}
 
 ### REPLACE ALL FIELDS IN AN ITEM 
-PUT {{url}}/germanNouns/4 
-content-type: application/json 
+PUT {{url}}/germanNouns/4 content-type: application/json
+
 {
-  "article": "die", 
-  "singular": "Bibliothek", 
-  "plural": "die Librarys"
-  }
+"article": "die", "singular": "Bibliothek", "plural": "die Librarys"
+}
 
 ### REPLACE ONE FIELD IN AN ITEM 
-PATCH {{url}}/germanNouns/4 
-content-type:application/json
+PATCH {{url}}/germanNouns/4 content-type:application/json
 
 {
 "singular": "Library"

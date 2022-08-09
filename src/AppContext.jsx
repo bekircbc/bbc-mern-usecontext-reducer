@@ -1,33 +1,47 @@
-import { createContext, useReducer } from 'react';
-// import axios from 'axios';
+import { createContext, useReducer, useEffect } from 'react';
+import axios from 'axios';
 
 export const AppContext = createContext();
 
-const api_base_url = 'http://localhost:4555';
-
 const initialState = {
 	count: 0,
-	germanNouns: [],
+	germanNouns: ['nnn'],
 };
 
 function reducer(state, action) {
-	let obj = { ...state };
+	const _state = { ...state };
 	switch (action.type) {
 		case 'increaseCount':
-			obj.count++;
+			_state.count++;
 			break;
 		case 'decreaseCount':
-			obj.count--;
+			_state.count--;
 			break;
 		case 'loadGermanNouns':
-			obj.germanNouns = action.payload;
+			_state.germanNouns = action.payload;
 			break;
+		case 'toggleEditStatus':
+			const item = action.payload;
+			item.isEditing = !item.isEditing;
+		// setGermanNouns([...germanNouns]);
 	}
-	return obj;
+	return _state;
 }
 
 export const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	useEffect(() => {
+		(async () => {
+			const _germanNouns = (
+				await axios.get('http://localhost:4555/germanNouns')
+			).data;
+			_germanNouns.forEach((noun) => {
+				noun.isEditing = false;
+			});
+			dispatch({ type: 'loadGermanNouns', payload: _germanNouns });
+		})();
+	}, []);
 
 	return (
 		<AppContext.Provider
